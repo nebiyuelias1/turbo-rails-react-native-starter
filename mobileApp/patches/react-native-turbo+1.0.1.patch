@@ -1,0 +1,37 @@
+diff --git a/node_modules/react-native-turbo/ios/RNSessionManager.swift b/node_modules/react-native-turbo/ios/RNSessionManager.swift
+index 9949b0a..f835d4f 100644
+--- a/node_modules/react-native-turbo/ios/RNSessionManager.swift
++++ b/node_modules/react-native-turbo/ios/RNSessionManager.swift
+@@ -6,6 +6,7 @@
+ //
+ 
+ import Foundation
++import WebKit
+ 
+ @objc(RNSessionManager)
+ class RNSessionManager: NSObject {
+diff --git a/node_modules/react-native-turbo/ios/RNSessionSubscriber.swift b/node_modules/react-native-turbo/ios/RNSessionSubscriber.swift
+index 64ecc51..d33905b 100644
+--- a/node_modules/react-native-turbo/ios/RNSessionSubscriber.swift
++++ b/node_modules/react-native-turbo/ios/RNSessionSubscriber.swift
+@@ -5,6 +5,8 @@
+ //  Created by Bartłomiej Fryz on 23/01/2023.
+ //
+ 
++import WebKit
++
+ protocol RNSessionSubscriber {
+   
+   var id: UUID { get set }
+diff --git a/node_modules/react-native-turbo/ios/RNVisitableView.swift b/node_modules/react-native-turbo/ios/RNVisitableView.swift
+index 6b49e48..a9cd478 100644
+--- a/node_modules/react-native-turbo/ios/RNVisitableView.swift
++++ b/node_modules/react-native-turbo/ios/RNVisitableView.swift
+@@ -6,6 +6,7 @@
+ //
+ 
+ import UIKit
++import WebKit
+ 
+ let REFRESH_SCRIPT = "typeof Turbo.session.refresh === 'function'" +
+             "? Turbo.session.refresh(document.baseURI)" + // Turbo 8+

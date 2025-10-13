@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Divoora Rider",
+    "slug": "divoora-rider",
+    "version": "1.0.6",
+    "orientation": "portrait",
+    "icon": "./assets/images/divoora-logo.png",
+    "scheme": "divoorarider",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/divoora-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ff0012"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.divoora.driver"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/divoora-logo.png",
+        "backgroundColor": "#ff0012"
+      },
+      "package": "com.divoora.rider"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 26
+          },
+          "ios": {
+            "deploymentTarget": "14.0"
+          }
+        }
+      ]
+    ],
+    "entryPoint": "./index.js",
+    "extra": {
+      "eas": {
+        "projectId": "8a13ccff-73cb-4db1-82a1-93a4af780f11"
+      }
+    }
+  }
+}
