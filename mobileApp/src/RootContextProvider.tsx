@@ -35,7 +35,6 @@ export const RootContextProvider: React.FC<RootContextProviderProps> = ({
   useEffect(() => {
     const getCookie = async () => {
       try {
-        // TODO: Get this key for the cookie from .env variable
         const response = await fetch(`${process.env.EXPO_PUBLIC_BASE_URL}/api/v1/auth/check`, {
           method: "GET",
           credentials: "include",
