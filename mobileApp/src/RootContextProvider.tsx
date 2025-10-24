@@ -35,6 +35,22 @@ export const RootContextProvider: React.FC<RootContextProviderProps> = ({
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
+    const getCookie = async () => {
+      try {
+        // TODO: Get this key for the cookie from .env variable
+        const response = await fetch("http://10.0.2.2:3000/api/v1/auth/check", {
+          method: "GET",
+          credentials: "include",
+        });
+        const data = await response.json();
+        const authenticated = data['authenticated'];
+        console.log('the response: ', data);
+        setIsLoggedIn(authenticated);
+      } catch (e) {
+        console.error('error', e);
+      }
+    }
+    getCookie();
     // const requestUserPermission = async () => {
     //   if (Platform.OS === "android") {
     //     await PermissionsAndroid.request(

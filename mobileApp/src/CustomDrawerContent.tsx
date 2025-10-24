@@ -20,7 +20,7 @@ const CustomDrawerContent = () => {
       <DrawerItem
         label="Profile"
         icon={({ color, size }) => <Ionicons name="person" color={color} size={size} />}
-        onPress={() => navigateTo(`${baseURL}/profile`, "advance")}
+        onPress={() => navigateTo(`${baseURL}/users/profile`, "advance")}
       />
     </DrawerContentScrollView>
   );
