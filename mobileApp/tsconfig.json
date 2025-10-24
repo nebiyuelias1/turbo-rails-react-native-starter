@@ -9,8 +9,8 @@
     }
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "env.d.ts"
+    "src/*.ts",
+    "src/*.tsx",
+    "types/env.d.ts"
   ]
 }

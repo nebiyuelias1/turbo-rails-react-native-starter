@@ -15,6 +15,5 @@ export const linkingConfig: LinkingConfig = {
     [Routes.Fallback]: "*",
   },
 };
-// export const baseURL = process.env.BASE_URL || "http://10.0.2.2:3000";
-export const baseURL = "http://10.0.2.2:3000";
+export const baseURL = process.env.EXPO_PUBLIC_BASE_URL || "http://10.0.2.2:3000";
 export const linking = getLinkingObject(baseURL, linkingConfig);

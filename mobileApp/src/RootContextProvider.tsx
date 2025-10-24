@@ -7,9 +7,7 @@ import React, {
   SetStateAction,
 } from "react";
 // import messaging from "@react-native-firebase/messaging";
-import { Platform, PermissionsAndroid, Alert } from "react-native";
-
-interface RootContextProps {
+import { Platform, PermissionsAndroid, Alert } from "react-native"; interface RootContextProps {
   deviceToken: string | null;
   isLoggedIn: boolean;
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
@@ -38,7 +36,7 @@ export const RootContextProvider: React.FC<RootContextProviderProps> = ({
     const getCookie = async () => {
       try {
         // TODO: Get this key for the cookie from .env variable
-        const response = await fetch("http://10.0.2.2:3000/api/v1/auth/check", {
+        const response = await fetch(`${process.env.EXPO_PUBLIC_BASE_URL}/api/v1/auth/check`, {
           method: "GET",
           credentials: "include",
         });
