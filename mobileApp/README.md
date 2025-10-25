@@ -1,6 +1,6 @@
-# Divoora Rider App
+# Turbo React Native App
 
-This is a hybrid for riders at divoora to help them book their shifts.
+This is a hybrid app built using rails turbo and react native.
 
 ## Prerequisites
 
