@@ -7,7 +7,6 @@ export const checkAuth = async (): Promise<boolean> => {
     });
     const data = await response.json();
     const authenticated: boolean = data['authenticated'];
-    console.log('the response: ', data);
     return authenticated;
   } catch (e) {
     console.error('error', e);
