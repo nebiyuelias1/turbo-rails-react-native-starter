@@ -6,11 +6,13 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
-// import messaging from "@react-native-firebase/messaging";
-import { Platform, PermissionsAndroid, Alert } from "react-native"; interface RootContextProps {
+import { checkAuth } from './utils/auth';
+
+interface RootContextProps {
   deviceToken: string | null;
   isLoggedIn: boolean;
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+  checkAuthStatus: () => Promise<void>;
 }
 
 const RootContext = createContext<RootContextProps | undefined>(
@@ -33,21 +35,10 @@ export const RootContextProvider: React.FC<RootContextProviderProps> = ({
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    const getCookie = async () => {
-      try {
-        const response = await fetch(`${process.env.EXPO_PUBLIC_BASE_URL}/api/v1/auth/check`, {
-          method: "GET",
-          credentials: "include",
-        });
-        const data = await response.json();
-        const authenticated = data['authenticated'];
-        console.log('the response: ', data);
-        setIsLoggedIn(authenticated);
-      } catch (e) {
-        console.error('error', e);
-      }
-    }
-    getCookie();
+    (async () => {
+      const isAuthenticated = await checkAuth();
+      setIsLoggedIn(isAuthenticated);
+    })();
     // const requestUserPermission = async () => {
     //   if (Platform.OS === "android") {
     //     await PermissionsAndroid.request(
@@ -78,9 +69,15 @@ export const RootContextProvider: React.FC<RootContextProviderProps> = ({
     // return unsubscribe;
   }, []);
 
+
+  const checkAuthStatus = async () => {
+    const isAuthenticated = await checkAuth();
+    setIsLoggedIn(isAuthenticated);
+  }
+
   return (
     <RootContext.Provider
-      value={{ deviceToken, isLoggedIn, setIsLoggedIn }}
+      value={{ deviceToken, isLoggedIn, setIsLoggedIn, checkAuthStatus }}
     >
       {children}
     </RootContext.Provider>

@@ -6,13 +6,14 @@ import { baseURL } from './webScreen';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const CustomDrawerContent = () => {
-    const { navigateTo } = useWebviewNavigate();
-    
+  const { navigateTo } = useWebviewNavigate();
+
   return (
     <DrawerContentScrollView>
       <View style={styles.brandingContainer}>
-        <Image source={require('../assets/images/divoora-logo.png')} style={styles.logo} />
-        <Text style={styles.brandingText}>Divoora Rider</Text>
+        <Image source={require('../assets/images/logo.png')} style={styles.logo} />
+        {/* TODO: Use title from env variable */}
+        <Text style={styles.brandingText}>Turbo Rails</Text>
       </View>
 
       <View style={{ borderBottomWidth: 1, borderBottomColor: '#ccc' }} />

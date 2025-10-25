@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { LoadEvent, VisitableView, VisitProposal } from 'react-native-turbo';
 import { useCurrentUrl, useWebviewNavigate } from 'react-native-web-screen';
@@ -10,18 +10,30 @@ import { useRootContext } from './RootContextProvider';
 import { MessageType, showMessage } from 'react-native-flash-message';
 import * as Linking from 'expo-linking';
 import { Routes } from './routes';
-export type HomeScreenProps = {
+
+export type WebViewProps = {
   navigation: NavigationProp<RootStackParamList>
 }
 
-export default function WebView({navigation}: HomeScreenProps) {
-  const { deviceToken, setIsLoggedIn } = useRootContext();
+export default function WebView({ navigation }: WebViewProps) {
+  const { deviceToken, isLoggedIn, checkAuthStatus } = useRootContext();
+  const isLoggedInRef = useRef<boolean>(false);
 
   const { navigateTo } = useWebviewNavigate();
   let currentUrl = useCurrentUrl(baseURL, linkingConfig);
   if (deviceToken) {
     currentUrl = `${currentUrl}?device_token=${deviceToken}`;
   }
+
+
+  useEffect(() => {
+    // if there is a change in login status logged in -> not logged in
+    if (isLoggedInRef.current && !isLoggedIn) {
+      navigation.reset({ index: 0, routes: [{ name: Routes.Home }] });
+    }
+
+    isLoggedInRef.current = isLoggedIn;
+  }, [isLoggedIn])
 
   const url = Linking.useURL();
   if (url) {
@@ -39,7 +51,7 @@ export default function WebView({navigation}: HomeScreenProps) {
     }
 
     const queryString = new URLSearchParams(processedQueryParams).toString();
-    
+
     currentUrl = `${baseURL}/${path}${queryString ? `?${queryString}` : ''}`;
   }
 
@@ -47,29 +59,15 @@ export default function WebView({navigation}: HomeScreenProps) {
 
   const onVisitProposal = useCallback(
     async ({ action: actionType, url }: VisitProposal) => {
-      // If url starts with intent://, we can handle it natively
-      if (url.startsWith('intent://')) {
-        await openVromoOrStore();
-        return;
-      } else if (url.startsWith('vromo://')) {
-        await openVromoOrStoreOniOS();
-        return;
-      }
-      if (url.includes('login') && navigation.canGoBack()) {
-        navigation.reset({index: 0, routes: [{ name: Routes.Home }] });
-        return
-      }
       navigateTo(url, actionType);
     },
     [navigation]
   );
 
   const onLoad = useCallback(
-    ({ title, url }: LoadEvent) => {
-      // TODO: Change this logic to a much safer way of checking
-      // for authentication.
-      setIsLoggedIn(title !== 'Login');
+    async ({ title, url }: LoadEvent) => {
       navigation.setOptions({ title })
+      await checkAuthStatus();
     },
     [navigation]
   );

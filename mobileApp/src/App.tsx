@@ -27,6 +27,7 @@ const Drawer = createDrawerNavigator();
 export function DrawerNavigator() {
   const { isLoggedIn } = useRootContext();
   const drawerScreenOptions: DrawerNavigationOptions = {}
+
   if (!isLoggedIn) {
     drawerScreenOptions.headerLeft = () => null
   }
