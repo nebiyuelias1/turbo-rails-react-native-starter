@@ -4,7 +4,7 @@
 A starter template to build hybrid apps using Turbo Rails and React Native.
 
 ## Features
-- Rails 7 + Turbo Native
+- Rails 8 + Turbo Native
 - React Native (Expo)
 - Tailwind + Turbo Streams
 - Ready for Strada integration
