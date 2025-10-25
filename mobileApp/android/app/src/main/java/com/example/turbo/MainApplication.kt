@@ -1,4 +1,4 @@
-package com.divoora.rider
+package com.example.turbo
 
 import android.app.Application
 import android.content.res.Configuration

@@ -1,27 +1,27 @@
 {
   "expo": {
-    "name": "Divoora Rider",
-    "slug": "divoora-rider",
-    "version": "1.0.6",
+    "name": "Turbo Rails",
+    "slug": "turbo-rails",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/divoora-logo.png",
-    "scheme": "divoorarider",
+    "icon": "./assets/images/logo.png",
+    "scheme": "turborails",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/divoora-splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ff0012"
+      "backgroundColor": "#fcf8f4"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.divoora.driver"
+      "bundleIdentifier": "com.example.turbo"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/divoora-logo.png",
+        "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ff0012"
       },
-      "package": "com.divoora.rider"
+      "package": "com.example.turbo"
     },
     "web": {
       "bundler": "metro",
