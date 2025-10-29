@@ -10,10 +10,12 @@ A starter template to build hybrid apps using Turbo Rails and React Native.
 - Ready for Strada integration
 
 ## Development
+In order to use this starter template, you must clone it first:
 ```bash
-cd backend
-bin/dev
-# new terminal
-cd mobile
-expo start
+https://github.com/nebiyuelias1/turbo-rails-react-native-starter.git```
+
+Look at the respective development guides for:
+* [backend](./backend/README.md)
+* [mobileApp](./mobileApp/README.md)
+
 
