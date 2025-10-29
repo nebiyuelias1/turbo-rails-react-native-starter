@@ -1,0 +1,22 @@
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-3xl font-extrabold">Books</h1>
+  <%= link_to 'New Book', new_book_path, class: 'inline-block bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700' %>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% @books.each do |book| %>
+    <div class="bg-white rounded-lg shadow p-4 hover:shadow-md">
+      <h2 class="text-xl font-semibold mb-1"><%= link_to book.title, book_path(book), class: 'text-blue-600 hover:underline' %></h2>
+      <p class="text-sm text-gray-600 mb-2">by <%= book.author.presence || 'Unknown' %></p>
+      <% if book.published_at.present? %>
+        <p class="text-sm text-gray-500">Published: <%= book.published_at.strftime('%b %e, %Y') %></p>
+      <% end %>
+
+      <div class="mt-4 flex items-center space-x-2">
+        <%= link_to 'View', book_path(book), class: 'text-sm bg-gray-100 px-3 py-1 rounded hover:bg-gray-200' %>
+        <%= link_to 'Edit', edit_book_path(book), class: 'text-sm bg-yellow-100 px-3 py-1 rounded hover:bg-yellow-200' %>
+        <%= link_to 'Delete', book_path(book), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-sm bg-red-100 px-3 py-1 rounded hover:bg-red-200' %>
+      </div>
+    </div>
+  <% end %>
+</div>

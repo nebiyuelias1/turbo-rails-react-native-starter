@@ -1,0 +1,23 @@
+<div class="max-w-3xl mx-auto bg-white rounded-lg shadow p-6">
+  <div class="flex items-start justify-between">
+    <div>
+      <h1 class="text-3xl font-bold mb-2"><%= @book.title %></h1>
+      <p class="text-sm text-gray-600">by <%= @book.author.presence || 'Unknown' %></p>
+      <% if @book.published_at.present? %>
+        <p class="text-sm text-gray-500">Published: <%= @book.published_at.strftime('%B %e, %Y') %></p>
+      <% end %>
+    </div>
+    <div class="space-x-2">
+      <%= link_to 'Edit', edit_book_path(@book), class: 'inline-block bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500' %>
+      <%= link_to 'Delete', book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: 'inline-block bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600' %>
+    </div>
+  </div>
+
+  <div class="mt-6 prose">
+    <%= simple_format(@book.description) %>
+  </div>
+
+  <div class="mt-6">
+    <%= link_to 'Back to list', books_path, class: 'text-sm text-blue-600 hover:underline' %>
+  </div>
+</div>

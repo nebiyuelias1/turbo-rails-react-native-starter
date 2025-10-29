@@ -1,0 +1,36 @@
+<%= form_with(model: book, local: true, class: 'space-y-4') do |form| %>
+  <% if book.errors.any? %>
+    <div class="bg-red-50 border border-red-200 text-red-700 p-3 rounded">
+      <strong><%= pluralize(book.errors.count, "error") %> prevented this book from being saved:</strong>
+      <ul class="mt-2 list-disc list-inside">
+        <% book.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, class: 'block text-sm font-medium text-gray-700' %>
+    <%= form.text_field :title, class: 'mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500' %>
+  </div>
+
+  <div>
+    <%= form.label :author, class: 'block text-sm font-medium text-gray-700' %>
+    <%= form.text_field :author, class: 'mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500' %>
+  </div>
+
+  <div>
+    <%= form.label :published_at, class: 'block text-sm font-medium text-gray-700' %>
+    <%= form.date_field :published_at, class: 'mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500' %>
+  </div>
+
+  <div>
+    <%= form.label :description, class: 'block text-sm font-medium text-gray-700' %>
+    <%= form.text_area :description, rows: 6, class: 'mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500' %>
+  </div>
+
+  <div class="pt-2">
+    <%= form.submit class: 'inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700' %>
+  </div>
+<% end %>
