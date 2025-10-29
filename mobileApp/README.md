@@ -154,7 +154,7 @@ mobileApp/
 ├── hooks/                    # Custom React hooks
 ├── types/                    # TypeScript type definitions
 ├── assets/                   # Images, fonts, and static files
-├── android/                  # Android native code
+├── android/                  # Android native code (generated after build)
 ├── scripts/                  # Build and utility scripts
 ├── app.json                  # Expo configuration
 ├── babel.config.js           # Babel configuration
@@ -162,6 +162,8 @@ mobileApp/
 ├── eas.json                  # EAS Build configuration
 └── package.json              # Dependencies and scripts
 ```
+
+**Note**: This project uses Expo's managed workflow. The `ios/` and `android/` directories are generated when you run development builds (`npx expo run:ios` or `npx expo run:android`). For standard Expo Go development, these directories are not needed.
 
 ## Available Scripts
 

@@ -117,8 +117,8 @@ rails test
 # Run specific test file
 rails test test/models/user_test.rb
 
-# Run with coverage
-rails test:coverage
+# Run tests in a specific directory
+rails test test/models/
 ```
 
 ## Key Features
