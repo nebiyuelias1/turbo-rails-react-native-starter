@@ -8,3 +8,199 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Forms */
+
+label,
+.label {
+  @apply text-sm leading-6 font-medium text-neutral-700;
+  @apply dark:text-neutral-100;
+}
+
+.form-input[disabled] {
+  @apply cursor-not-allowed bg-neutral-200;
+}
+
+/* non-input elements (like the Stripe card form) can be styled to look like an input */
+div.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border-width: 1px;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.form-control {
+  @apply block w-full rounded-lg bg-white border-0 px-3 py-2 text-base leading-6 text-neutral-900 shadow-sm ring-1 ring-neutral-300 outline-hidden ring-inset placeholder:text-neutral-500 focus:ring-2 focus:ring-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder-neutral-300 dark:ring-neutral-600 dark:focus:ring-neutral-500;
+}
+
+@media (min-width: 640px) {
+  .form-control {
+    font-size: 0.875rem; /* text-sm equivalent (14px) for larger screens */
+  }
+}
+
+.form-control[disabled] {
+  @apply cursor-not-allowed bg-neutral-100 dark:bg-neutral-600;
+}
+
+.form-control.error {
+  @apply border-red-400 ring-red-300 focus:ring-red-500 dark:border-red-600 dark:ring-red-500;
+}
+
+select:not([multiple]) {
+  @apply w-full appearance-none rounded-lg border-0 bg-white px-3 py-2 text-base leading-6 text-neutral-900 shadow-sm ring-1 ring-neutral-300 outline-hidden ring-inset focus:ring-2 focus:ring-neutral-600;
+
+  /* Custom dropdown arrow */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23737373' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25em 1.25em;
+  padding-right: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  select:not([multiple]) {
+    font-size: 0.875rem; /* text-sm equivalent (14px) for larger screens */
+  }
+}
+
+/* Dark mode styling for single select */
+.dark {
+  select:not([multiple]) {
+    @apply dark:bg-neutral-700 dark:text-white dark:ring-neutral-600 dark:focus:ring-neutral-500;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23A1A1AA' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  }
+}
+
+select:not([multiple])[disabled] {
+  @apply cursor-not-allowed bg-neutral-100 opacity-75 ring-neutral-200 dark:bg-neutral-600 dark:ring-neutral-500;
+}
+
+select[multiple] {
+  @apply w-full rounded-lg rounded-r-none border-0 bg-white px-3 py-2.5 text-base leading-6 text-neutral-900 shadow-sm outline-1 -outline-offset-1 outline-neutral-300 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-neutral-600 dark:outline-neutral-600;
+  min-height: 120px;
+}
+
+select[multiple] option {
+  @apply rounded-md;
+}
+
+@media (min-width: 640px) {
+  select[multiple] {
+    font-size: 0.875rem; /* text-sm equivalent (14px) for larger screens */
+  }
+}
+
+/* Dark mode styling for multiple select */
+.dark {
+  select[multiple] {
+    @apply dark:bg-neutral-700 dark:text-white dark:ring-neutral-600 dark:focus:ring-neutral-500;
+  }
+}
+
+select[multiple][disabled] {
+  @apply cursor-not-allowed bg-neutral-100 opacity-75 ring-neutral-200 dark:bg-neutral-600 dark:ring-neutral-500;
+}
+
+option {
+  @apply bg-white px-3 py-2 text-sm text-neutral-900 dark:bg-neutral-700 dark:text-neutral-100;
+}
+
+option:checked {
+  @apply bg-neutral-100 dark:bg-neutral-600;
+}
+
+option:hover {
+  @apply bg-neutral-50 dark:bg-neutral-600;
+}
+
+.caret {
+  @apply pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-neutral-800;
+}
+
+[type="checkbox"] {
+  @apply size-4 cursor-pointer appearance-none rounded-sm border border-neutral-300 bg-white checked:border-neutral-700 checked:bg-neutral-800 indeterminate:border-neutral-700 indeterminate:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:border-neutral-300 disabled:bg-neutral-100 disabled:checked:bg-neutral-100 dark:border-white/20 dark:bg-neutral-800 dark:checked:border-white/20 dark:checked:bg-neutral-900 dark:indeterminate:border-neutral-500 dark:indeterminate:bg-neutral-600 dark:focus-visible:outline-neutral-200 dark:disabled:border-neutral-500 dark:disabled:bg-neutral-400 dark:disabled:checked:bg-neutral-500 forced-colors:appearance-auto;
+}
+
+[type="checkbox"]:checked {
+  @apply text-white dark:text-neutral-800;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[type="checkbox"]:indeterminate {
+  @apply border-neutral-300 bg-neutral-800 text-white dark:border-neutral-600 dark:!bg-neutral-700 dark:text-neutral-800;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3e%3cg fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' %3e%3cline x1='10.75' y1='6' x2='1.25' y2='6'%3e%3c/line%3e%3c/g%3e%3c/svg%3e");
+  background-size: 75% 75%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[type="checkbox"]:disabled {
+  @apply cursor-not-allowed border-neutral-300 bg-neutral-300 text-neutral-400 opacity-75 hover:text-neutral-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-500;
+}
+
+[type="checkbox"]:disabled:checked {
+  @apply border-neutral-300 dark:border-neutral-600 dark:bg-neutral-600;
+}
+
+[type="checkbox"]:indeterminate:hover {
+  @apply bg-neutral-800 dark:border-neutral-600 dark:!bg-neutral-700;
+}
+
+[type="radio"] {
+  @apply size-4 cursor-pointer appearance-none rounded-full border border-neutral-300 bg-white checked:border-neutral-700 checked:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:border-neutral-300 disabled:bg-neutral-100 disabled:checked:bg-neutral-100 dark:border-white/20 dark:bg-neutral-800 dark:checked:border-white/20 dark:checked:bg-neutral-900 dark:focus-visible:outline-neutral-200 dark:disabled:border-neutral-500 dark:disabled:bg-neutral-400 dark:disabled:checked:bg-neutral-500 forced-colors:appearance-auto;
+}
+
+[type="radio"]:checked {
+  @apply text-white dark:text-neutral-800;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[type="radio"]:disabled {
+  @apply cursor-not-allowed border-neutral-300 bg-neutral-300 text-neutral-400 opacity-75 hover:text-neutral-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:text-neutral-500;
+}
+
+[type="radio"]:disabled:checked {
+  @apply border-neutral-300 dark:border-neutral-600 dark:bg-neutral-600;
+}
+
+/* Datalist styling */
+input[list] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Replace default datalist arrow in WebKit browsers */
+input[list].replace-default-datalist-arrow::-webkit-calendar-picker-indicator {
+  display: none !important;
+  -webkit-appearance: none !important;
+}
+
+input[list].replace-default-datalist-arrow {
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23737373' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25em 1.25em;
+}
+
+/* Dark mode datalist arrow */
+.dark {
+  input[list].replace-default-datalist-arrow {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23A1A1AA' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  }
+}
