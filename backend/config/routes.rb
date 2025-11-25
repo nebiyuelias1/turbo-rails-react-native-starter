@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   root "pages#home"
 
   # Book resources (public)
-  resources :books
+  resources :books do
+    resources :ratings, only: [:create]
+  end
 
   # Simple API namespace for small JSON endpoints
   namespace :api do

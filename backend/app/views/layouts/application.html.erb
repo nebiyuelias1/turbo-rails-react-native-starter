@@ -17,6 +17,39 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
+    <%# Automatically trigger toast notifications from Rails flash messages %>
+    <% if flash[:toast].present? %>
+      <% toast_data = flash[:toast].is_a?(Hash) ? flash[:toast].with_indifferent_access : {} %>
+      <script>
+        document.addEventListener('turbo:load', function() {
+          toast('<%= j toast_data[:message] %>', {
+            type: '<%= toast_data[:type] || "default" %>',
+            description: '<%= j toast_data[:description].to_s %>'
+          });
+        }, { once: true });
+      </script>
+    <% end %>
+
+    <% if notice.present? %>
+      <script>
+        document.addEventListener('turbo:load', function() {
+          toast('<%= j notice %>', {
+            type: 'success'
+          });
+        }, { once: true });
+      </script>
+    <% end %>
+
+    <% if alert.present? %>
+      <script>
+        document.addEventListener('turbo:load', function() {
+          toast('<%= j alert %>', {
+            type: 'error'
+          });
+        }, { once: true });
+      </script>
+    <% end %>
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -42,6 +75,8 @@
     </header>
 
     <main class="container mx-auto p-6">
+      <%= render "shared/toast_container" %>
+      <%= render "shared/flash" %>
       <%= yield %>
     </main>
   </body>

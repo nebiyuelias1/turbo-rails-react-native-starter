@@ -204,3 +204,144 @@ input[list].replace-default-datalist-arrow {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23A1A1AA' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
   }
 }
+
+
+/* Toast Notifications */
+.toast-item {
+  @apply absolute w-full left-0 select-none;
+  z-index: var(--toast-z-index, 100);
+
+  /* Position based on data attributes */
+  top: var(--toast-top, auto);
+  bottom: var(--toast-bottom, auto);
+  transform: var(--toast-transform, translateY(0));
+  scale: var(--toast-scale, 100%);
+  opacity: var(--toast-opacity, 1);
+
+  /* Separate transitions for better control - like Sonner */
+  transition: transform 400ms ease, opacity 400ms ease, scale 400ms ease, top 400ms ease, bottom 400ms ease,
+    height 200ms ease;
+}
+
+/* Initial hidden state for enter animation */
+.toast-item[data-mounted="false"] {
+  opacity: 0;
+}
+
+.toast-item[data-mounted="false"][data-position*="bottom"] {
+  transform: translateY(100%);
+}
+
+.toast-item[data-mounted="false"][data-position*="top"] {
+  transform: translateY(-100%);
+}
+
+/* Removed state for exit animation */
+.toast-item[data-removed="true"] {
+  opacity: 0;
+  scale: 95%;
+  pointer-events: none;
+}
+
+/* In stacked mode, removed toasts should slide away */
+.toast-item[data-removed="true"][data-expanded="false"][data-position*="bottom"] {
+  transform: translateY(calc(var(--toast-index) * 14px + 5%));
+}
+
+.toast-item[data-removed="true"][data-expanded="false"][data-position*="top"] {
+  transform: translateY(calc(-1 * (var(--toast-index) * 14px + 5%)));
+}
+
+/* Overflow toasts (removed due to limit) slide in opposite direction */
+.toast-item[data-removed="true"][data-overflow="true"][data-expanded="false"][data-position*="bottom"] {
+  transform: translateY(calc(-1 * (var(--toast-index) * 14px + 25%)));
+  scale: 78%;
+}
+
+.toast-item[data-removed="true"][data-overflow="true"][data-expanded="false"][data-position*="top"] {
+  transform: translateY(calc(var(--toast-index) * 14px + 25%));
+  scale: 78%;
+}
+
+/* Pointer events based on visibility */
+.toast-item[data-visible="false"] {
+  pointer-events: none;
+}
+
+/* Expanded mode styles */
+.toast-item[data-expanded="true"] {
+  --toast-scale: 100%;
+  height: var(--initial-height);
+}
+
+.toast-item[data-expanded="true"][data-position*="bottom"] {
+  --toast-top: auto;
+  --toast-bottom: var(--toast-offset, 0px);
+  --toast-transform: translateY(0);
+}
+
+.toast-item[data-expanded="true"][data-position*="top"] {
+  --toast-top: var(--toast-offset, 0px);
+  --toast-bottom: auto;
+  --toast-transform: translateY(0);
+}
+
+/* Stacked mode styles */
+.toast-item[data-expanded="false"][data-front="true"] {
+  --toast-scale: 100%;
+  --toast-opacity: 1;
+  height: var(--initial-height);
+}
+
+.toast-item[data-expanded="false"][data-front="true"][data-position*="bottom"] {
+  --toast-top: auto;
+  --toast-bottom: 0px;
+  --toast-transform: translateY(0);
+}
+
+.toast-item[data-expanded="false"][data-front="true"][data-position*="top"] {
+  --toast-top: 0px;
+  --toast-bottom: auto;
+  --toast-transform: translateY(0);
+}
+
+/* Non-front toasts in stack - Sonner approach */
+.toast-item[data-expanded="false"]:not([data-front="true"]) {
+  height: var(--front-toast-height);
+  overflow: hidden;
+  --toast-scale: calc(100% - (var(--toast-index) * 6%));
+  display: flex;
+  flex-direction: column;
+}
+
+.toast-item[data-expanded="false"]:not([data-front="true"])[data-position*="bottom"] {
+  --toast-top: auto;
+  --toast-bottom: 0px;
+  --toast-transform: translateY(calc(-1 * var(--toast-index) * 14px));
+  justify-content: flex-start; /* Content at top, bottom gets cut */
+}
+
+.toast-item[data-expanded="false"]:not([data-front="true"])[data-position*="top"] {
+  --toast-top: 0px;
+  --toast-bottom: auto;
+  --toast-transform: translateY(calc(var(--toast-index) * 14px));
+  justify-content: flex-end; /* Content at bottom, top gets cut */
+}
+
+/* Hidden toasts (beyond 3rd) */
+.toast-item[data-expanded="false"][data-visible="false"] {
+  --toast-opacity: 0;
+  --toast-scale: 82%;
+}
+
+.toast-item[data-expanded="false"][data-visible="false"][data-position*="bottom"] {
+  --toast-top: auto;
+  --toast-bottom: -200px;
+  --toast-transform: translateY(0);
+}
+
+.toast-item[data-expanded="false"][data-visible="false"][data-position*="top"] {
+  --toast-top: -200px;
+  --toast-bottom: auto;
+  --toast-transform: translateY(0);
+}

@@ -1,0 +1,14 @@
+<div data-controller="toast"
+     id="toast_triggers"
+     data-toast-position-value="top-center"
+     data-toast-layout-value="default"> <%# Change to "expanded" for expanded mode %>
+  <ul
+    data-toast-target="container"
+    data-action="mouseenter->toast#handleMouseEnter mouseleave->toast#handleMouseLeave"
+    class="fixed block w-full group z-[99] max-w-[300px] sm:max-w-xs left-1/2 -translate-x-1/2 top-0 overflow-visible"
+    style="transition: height 300ms ease;"
+  >
+    <%# Toast notifications will be dynamically inserted here %>
+    <%# Position classes are managed by the Stimulus controller %>
+  </ul>
+</div>
