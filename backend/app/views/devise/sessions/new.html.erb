@@ -66,6 +66,10 @@
       </div>
     <% end %>
 
+    <div class="mt-6 flex justify-center">
+      <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="<%= ENV['TELEGRAM_BOT_NAME'] %>" data-size="large" data-auth-url="<%= telegram_login_callback_url %>" data-request-access="write"></script>
+    </div>
+
     <div class="mt-6 text-center text-sm text-gray-600">
       <%= render "devise/shared/links" %>
     </div>
