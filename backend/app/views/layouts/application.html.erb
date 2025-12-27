@@ -60,11 +60,10 @@
       <nav class="container mx-auto flex items-center justify-between p-4">
         <div>
           <%= link_to 'Home', root_path, class: 'mr-4' %>
-          <%= link_to 'Books', books_path %>
         </div>
         <div>
           <% if user_signed_in? %>
-            <%= link_to current_user.email, profile_path, class: 'mr-2' %>
+            <%= link_to current_user.username, profile_path, class: 'mr-2' %>
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
           <% else %>
             <%= link_to 'Sign in', new_user_session_path, class: 'mr-2' %>

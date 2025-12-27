@@ -5,7 +5,7 @@
 				<div class="flex-1">
 					<h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900"> 
 						<% if defined?(current_user) && current_user.present? %>
-							Hey <span class="text-indigo-600"><%= current_user.email.split('@').first.capitalize rescue current_user.to_s %></span>!
+							Hey <span class="text-indigo-600"><%= current_user.name rescue current_user.to_s %></span>!
 						<% else %>
 							Hey there!
 						<% end %>

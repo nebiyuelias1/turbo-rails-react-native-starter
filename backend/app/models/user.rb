@@ -7,11 +7,15 @@ class User < ApplicationRecord
   has_many :ratings, dependent: :destroy
 
   def self.from_telegram(auth)
-    where(telegram_id: auth[:id]).first_or_create do |user|
-      user.email = auth[:email] || "#{auth[:id]}@telegram.com" # Generate a unique email if not provided
-      user.password = Devise.friendly_token[0, 20]
-      user.name = [ auth[:first_name], auth[:last_name] ].join(" ").strip
-      user.telegram_id = auth[:id]
+    user = where(telegram_id: auth[:id]).first_or_initialize do |u|
+      # TODO: Require email verification
+      u.email = auth[:email] || "#{auth[:id]}@telegram.com"
+      u.password = Devise.friendly_token[0, 20]
     end
+    user.name = [ auth[:first_name], auth[:last_name] ].join(" ").strip
+    user.username = auth[:username]
+    user.telegram_id = auth[:id]
+    user.save!
+    user
   end
 end
