@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
+  before_action :create_telegram_discussion, only: :show
 
   def index
     @books = Book.order(created_at: :desc)
@@ -43,5 +44,14 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :author, :description, :published_at)
+  end
+
+  def create_telegram_discussion
+    if !@book.telegram_post_id.present?
+      message_id = TelegramService.new(@book).publish
+      if message_id
+        @book.update(telegram_post_id: message_id)
+      end
+    end
   end
 end

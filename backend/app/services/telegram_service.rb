@@ -29,7 +29,7 @@ class TelegramService
     caption = get_caption
 
     params = {
-      chat_id: @channel_username,
+      chat_id: "@#{@channel_username}",
       caption: caption,
       photo: @book.cover_image,
       parse_mode: "Markdown"
@@ -42,7 +42,7 @@ class TelegramService
     caption = get_caption
 
     params = {
-      chat_id: @channel_username,
+      chat_id: "@#{@channel_username}",
       caption: caption,
       parse_mode: "Markdown"
     }
