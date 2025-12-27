@@ -4,15 +4,15 @@ class RatingsController < ApplicationController
   def create
     @book = Book.find(params[:book_id])
     @rating = @book.ratings.find_or_initialize_by(user: current_user)
-    
+
     if @rating.update(rating_params)
       respond_to do |format|
-        format.html { redirect_to @book, notice: 'Rating saved successfully.' }
+        format.html { redirect_to @book, notice: "Rating saved successfully." }
         format.json { render json: { rating: @rating, average: @book.average_rating } }
       end
     else
       respond_to do |format|
-        format.html { redirect_to @book, alert: 'Failed to save rating.' }
+        format.html { redirect_to @book, alert: "Failed to save rating." }
         format.json { render json: { errors: @rating.errors }, status: :unprocessable_entity }
       end
     end
