@@ -19,7 +19,7 @@ books_data = [
     title: "ፍቅር እስከ መቃብር",
     author: "ሐዲስ አለማየሁ",
     description: <<~DESC.strip,
-      "ፍቅር እስከ መቃብር" በኢትዮጵያ ሥነ ልቦና ውስጥ ከፍተኛ ዋጋ ያለው መፅሀፍ ነው። 
+      "ፍቅር እስከ መቃብር" በኢትዮጵያ ሥነ ልቦና ውስጥ ከፍተኛ ዋጋ ያለው መፅሀፍ ነው።#{' '}
       የአንድ ወጣት ወንድና የአንዲት ወጣት ሴት ፍቅርን በኢትዮጵያዊ ህይወትና ባህላዊ ተነሳስተኝነት ይገልጻል።
       የፍቅር ታሪክ በኢትዮጵያ ባህላዊ እና ማኅበራዊ አካባቢ ውስጥ የተደረገ ትንታኔ ነው።
     DESC
@@ -27,7 +27,7 @@ books_data = [
     language: "am",
     publisher: "Addis Ababa University Press",
     isbn: "9789994400010",
-    cover_image: "https://upload.wikimedia.org/wikipedia/en/7/7e/Fikir_Esike_Mekabir.jpg",
+    cover_image: "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590965645i/53713557.jpg",
     average_rating: 4.9,
     reviews_count: 0,
     tag_names: %w[አማርኛ ፍቅር ታሪክ ባህል]
@@ -36,7 +36,7 @@ books_data = [
     title: "ኦሮማይ",
     author: "በዓሉ ግርማ",
     description: "የ1980ዎቹ በውስጥ የኢትዮጵያ የመንግስት ሥርዓትና የሞት ዘመን ውስጥ የአንድ የቴሌቪዥን ዘጋቢ ታሪክ። የተፈተነው የደርዳር ውጤት በግልፅነት ተገልጿል።",
-    published_at: Date.new(1983,1,1),
+    published_at: Date.new(1983, 1, 1),
     language: "am",
     publisher: "Kuraz Publishing Agency",
     isbn: "9789994400056",
@@ -49,7 +49,7 @@ books_data = [
     title: "የተቆለፈበት ቁልፍ",
     author: "ዶ/ር መህረት ደበበ",
     description: "ልዩ ታሪክ በውጭ ተተመው የተነሳ የማኅበረሰብ እና የጭንቀት ጉዳዮችን የሚያሳይ። አብዛኛው በግልፅ አማርኛ ቋንቋ ተጻፈ።",
-    published_at: Date.new(1995,1,1),
+    published_at: Date.new(1995, 1, 1),
     language: "am",
     publisher: "የኢትዮጵያ ዩኒቨርሲቲ ፕረስ",
     isbn: "9789994400063",
