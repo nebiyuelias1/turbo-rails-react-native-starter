@@ -14,13 +14,13 @@ class TelegramLoginController < ApplicationController
   private
 
   def telegram_data_is_valid?
-    data_check_string = telegram_params.to_h.map { |k, v| "#{k}=#{v}" }.sort.join("\n")
+    data_check_string = telegram_params.to_h.except("hash").map { |k, v| "#{k}=#{v}" }.sort.join("\n")
     secret_key = Digest::SHA256.digest(ENV["TELEGRAM_BOT_TOKEN"])
     hash = OpenSSL::HMAC.hexdigest("sha256", secret_key, data_check_string)
-    hash == params[:hash]
+    hash == telegram_params[:hash]
   end
 
   def telegram_params
-    params.permit(:id, :first_name, :last_name, :username, :photo_url, :auth_date)
+    params.permit(:id, :first_name, :last_name, :username, :photo_url, :auth_date, :hash)
   end
 end
